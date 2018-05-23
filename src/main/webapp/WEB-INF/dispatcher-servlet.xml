@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--此文件负责整个MVC中的配置-->
+
+    <!--对base-package 包或者子包下的所有Java类进行扫描,并把匹配的Java类注册成Bean-->
+
+    <context:component-scan base-package="me.looorielovbb.ssmfuck.controller"/>
+
+    <!-- 定义一个视图解析器,用于支持 Servlet、JSP 路径解析-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--/WEB-INF/pages/	是	jsp	目录,prefix:前缀-->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <!--suffix:后缀,以	jsp	结尾-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <context:component-scan base-package="me.looorielovbb.ssmfuck.model"/>
+
+    <context:component-scan base-package="me.looorielovbb.ssmfuck.dao"/>
+
+    <!--开启注解-->
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
+
+</beans>

@@ -1,0 +1,45 @@
+<?xml    version="1.0"    encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.looorielovbb.ssmfuck.dao.DeveloperDao">
+    <!-- 目的:为 dao 接口方法提供 sql 语句配置 -->
+    <select id="getAllDevelopers" resultType="DeveloperModel">
+        SELECT *
+        FROM
+            developer
+    </select>
+    <select id="getDeveloper" resultType="DeveloperModel" parameterType="String">
+        SELECT *
+        FROM
+            developer
+        WHERE
+            id = #{id}
+    </select>
+    <insert id="addDeveloper">
+        <!-- ignore	主键冲突,报错 -->
+        INSERT
+        IGNORE
+        INTO
+        developer
+        (name,site,avatar)
+        VALUES
+        (#{name}, #{site}, #{avatar})
+    </insert>
+    <update id="updateDeveloper">
+        <!-- ignore 主键冲突,报错 -->
+        UPDATE
+        developer
+        SET
+        name=#{name}
+        WHERE
+        id = #{id}
+    </update>
+    <delete id="deleteDeveloper" parameterType="String">
+        DELETE
+        FROM
+            developer
+        WHERE
+            id = #{id}
+    </delete>
+</mapper>
